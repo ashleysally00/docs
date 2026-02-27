@@ -1,4 +1,6 @@
 {
+  "name": "AI Analytics Context Management",
+  "theme": "mint",
   "navigation": [
     {
       "group": "Overview",
