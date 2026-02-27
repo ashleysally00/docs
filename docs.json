@@ -1,18 +1,24 @@
 {
-  "name": "AI Analytics Context Management",
+  "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "navigation": [
-    {
-      "group": "Overview",
-      "pages": ["index"]
-    },
-    {
-      "group": "Documentation Layers",
-      "pages": [
-        "ai-context",
-        "ai-configuration",
-        "ai-usage"
-      ]
-    }
-  ]
+  "name": "AI Analytics Context Management",
+  "colors": {
+    "primary": "#16A34A"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Overview",
+        "pages": ["index"]
+      },
+      {
+        "group": "Documentation Layers",
+        "pages": [
+          "ai-context",
+          "ai-configuration",
+          "ai-usage"
+        ]
+      }
+    ]
+  }
 }
