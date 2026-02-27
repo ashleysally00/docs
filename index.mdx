@@ -1,82 +1,71 @@
-# AI tool configuration – internal analytics assistant
+---
+title: "AI Context & Configuration"
+description: "Multi-layer documentation for an internal AI lending analytics assistant."
+---
 
-This file documents how the internal AI analytics chatbot at ExampleCorp is configured and governed.
-It describes what data the tool can access and what rules it must follow when generating and executing analytics queries.
+# AI Context & Configuration for an Internal Lending Analytics Assistant
 
-This file uses synthetic data for a fictional company (ExampleCorp) for demonstration purposes only.
+This repository demonstrates how to create AI context files, configuration documentation, and user guidance for an internal analytics assistant using synthetic lending data.  
+It is intended as a documentation and context-engineering example only.
+
+ExampleCorp has an internal AI chatbot that answers questions about lending data and model performance.
+
+Context greatly improves chatbots — but an internal AI analytics system needs more than one context layer to work correctly.
+
+## Why Multiple Context Layers Matter
+
+Different context layers are needed for different situations:
+
+- **Data and model context** so the AI system can correctly interpret tables, columns, and model outputs  
+- **Configuration context** so platform and BI teams can operate, restrict, and govern the AI analytics tool safely  
+- **Usage instructions** so internal users understand how to ask questions and interpret results  
+
+In this example, the chatbot relies on these three documentation layers to understand what the data means, how it is allowed to be used, and how its answers should be interpreted.
 
 ---
 
-## Allowed tables
+## Example Use Cases
 
-The AI analytics chatbot is allowed to access the following tables:
-- applications  
-- decisions  
-- users  
-- financial_signals
+Internal teams such as:
 
-The chatbot must not query any tables outside this approved list.
+- BI analysts  
+- Product managers  
+- Risk / operations  
 
----
+May ask questions like:
 
-## Masked fields
+- “What was the approval rate last week by product type?”  
+- “Which financial signals correlate most with decline?”  
+- “How did model v3 perform vs v2?”  
 
-The following fields must not be exposed in query results returned to users:
-- users.email
-- users.phone_number
-- users.full_name
-- users.date_of_birth
-
-These fields may be used only for internal joins if required, but must never be displayed in outputs.
+To answer these reliably, the system depends on structured documentation.
 
 ---
 
-## Row-level access
+## Documentation Layers
 
-Row-level data is not exposed to general users.
+<Columns cols={3}>
+  <Card
+    title="AI Context"
+    icon="database"
+    href="/ai-context"
+  >
+    Defines tables, columns, joins, constraints, and model inputs vs outputs.
+  </Card>
 
-The chatbot may return:
-- aggregated metrics
-- grouped summaries
-- distribution statistics
+  <Card
+    title="AI Tool Configuration"
+    icon="shield-check"
+    href="/ai-tool-configuration"
+  >
+    Governance rules, masked fields, row-level restrictions, and join rules.
+  </Card>
 
-Row-level results are only allowed for approved diagnostic and platform use cases and are restricted to authorized engineering and data platform users.
-
----
-
-## Default time windows
-
-When a user does not specify a time range, the chatbot should apply the following default window:
-- last 30 days based on applications.submitted_at
-
-If a query references model performance, the same default window applies using decisions.decision_timestamp.
-
----
-
-## Join rules
-
-The chatbot is allowed to use only the following join paths:
-- applications.application_id → decisions.application_id
-- applications.application_id → financial_signals.application_id
-- applications.user_id → users.user_id
-
-The chatbot must not generate joins using any other fields.
-
-All joins must be explicit and use the approved primary and foreign key relationships defined above.
-
----
-
-## How this configuration was created
-
-In a company setting, AI tool access and governance rules are not arbitrary.
-They are defined through collaboration between data governance, legal and compliance, engineering, and business stakeholders.
-
-In practice, these rules usually come from:
-- existing database permissions and role-based access controls
-- internal data classification policies (for example, PII, sensitive, and public data)
-- compliance requirements (such as GDPR, CCPA, and internal security standards)
-- approved analytics and AI use cases and user access levels
-- existing data governance and security frameworks
-
-This configuration follows the same approach.
-Because this repository uses synthetic data from a fictional company (ExampleCorp), standard industry data governance practices are applied.
+  <Card
+    title="User Guidance"
+    icon="users"
+    href="/ai-usage"
+  >
+    Instructions for internal teams on how to use and interpret the AI analytics tool.
+  </Card>
+</Columns>
